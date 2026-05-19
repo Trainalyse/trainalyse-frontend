@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
+  const navigate = useNavigate();
   const [userName, setUserName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password1, setPassword1] = React.useState("");
@@ -21,8 +23,14 @@ function Signup() {
   function handleSubmit(event) {
     event.preventDefault();
     if (password1 !== password2) {
-      throw new Error("Both passwords dont match");
+      alert("Both passwords don't match");
+      return;
     }
+    navigate("/Moreinfo");
+  }
+
+  function handleLogin() {
+    navigate("/Login");
   }
 
   return (
