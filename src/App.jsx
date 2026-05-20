@@ -15,7 +15,6 @@ function App() {
       <button>Date</button>
       <button>Title</button>
       <button>settings</button>
-      <button onClick={() => navigate("/Login")}>Login</button>
 
       <hr></hr>
       <ul>

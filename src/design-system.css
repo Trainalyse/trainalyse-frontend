@@ -1,11 +1,218 @@
+/* ═══════════════════════════════════════════════════
+   TRAINALYSE DESIGN SYSTEM
+   Based on Login Page wireframe specifications.
+   ═══════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────
+   1. COLOR PALETTE
+   ───────────────────────────────────────── */
 :root {
-    /* Colors */
-    --color-beige: #e8dcc8;
+    --color-blue: #202af9;
+    --color-blue-70: #202af9b3;
+    --color-blue-56: #202af98f;
+    --color-neon: #defa1b;
+    --color-neon-80: #defa1bcc;
     --color-white: #ffffff;
     --color-black: #000000;
+    --color-black-39: #00000063;
+}
 
-    /* Semantic tokens */
-    --bg-page: var(--color-beige);
-    --bg-surface: var(--color-white);
-    --text-primary: var(--color-black);
+/* ─────────────────────────────────────────
+   2. SEMANTIC TOKENS
+   ───────────────────────────────────────── */
+:root {
+    /* Backgrounds */
+    --bg-page: var(--color-white);
+    --bg-card: var(--color-neon-80);
+    --bg-button-primary: var(--color-blue);
+
+    /* Text */
+    --text-heading: var(--color-blue);
+    --text-subheading: var(--color-blue-56);
+    --text-label: var(--color-blue-70);
+    --text-placeholder: var(--color-blue-56);
+    --text-on-button: var(--color-neon);
+    --text-body: var(--color-blue-56);
+
+    /* Borders */
+    --border-input: var(--color-blue);
+
+    /* Shadows */
+    --shadow-card: 3px 3px 3px var(--color-black-39);
+}
+
+/* ─────────────────────────────────────────
+   3. TYPOGRAPHY
+   ───────────────────────────────────────── */
+:root {
+    /* Font families */
+    --font-heading: "Rammetto One", system-ui, sans-serif;
+    --font-primary: "Sama Gurmukhi", system-ui, sans-serif;
+
+    /* Font sizes */
+    --size-h1: 36px;
+    --size-h2: 20px;
+    --size-label: 16px;
+    --size-placeholder: 16px;
+    --size-button: 20px;
+    --size-button-sm: 16px;
+
+    /* Line heights */
+    --lh-h1: 24px;
+    --lh-h2: 20px;
+    --lh-label: 24px;
+    --lh-placeholder: 24px;
+    --lh-button: 24px;
+
+    /* Font weights */
+    --weight-regular: 400;
+    --weight-bold: 700;
+}
+
+/* ─────────────────────────────────────────
+   4. SPACING
+   ───────────────────────────────────────── */
+:root {
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 12px;
+    --space-lg: 16px;
+    --space-xl: 20px;
+    --space-2xl: 24px;
+    --space-3xl: 32px;
+    --space-4xl: 48px;
+}
+
+/* ─────────────────────────────────────────
+   5. BORDERS & RADII
+   ───────────────────────────────────────── */
+:root {
+    --radius-card: 20px;
+    --radius-button: 20px;
+    --border-input-width: 2px;
+}
+
+/* ─────────────────────────────────────────
+   6. BASE STYLES
+   ───────────────────────────────────────── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-weight: var(--weight-regular);
+    font-size: var(--size-label);
+    color: var(--text-body);
+    background-color: var(--bg-page);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─────────────────────────────────────────
+   7. TYPOGRAPHY STYLES
+   ───────────────────────────────────────── */
+
+/* H1 — "Trainalyse" */
+h1 {
+    font-family: var(--font-heading);
+    font-size: var(--size-h1);
+    line-height: var(--lh-h1);
+    color: var(--text-heading);
+}
+
+/* H2 — "Welcome back!" */
+h2 {
+    font-family: var(--font-primary);
+    font-size: var(--size-h2);
+    line-height: var(--lh-h2);
+    color: var(--text-subheading);
+}
+
+/* ─────────────────────────────────────────
+   8. CARD
+   ───────────────────────────────────────── */
+.card {
+    background-color: var(--bg-card);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    padding: var(--space-2xl);
+}
+
+/* ─────────────────────────────────────────
+   9. INPUT GROUP
+   Label + placeholder input with bottom border
+   ───────────────────────────────────────── */
+
+/* Label — "USERNAME", "EMAIL", "PASSWORD" */
+.input-label {
+    font-family: var(--font-primary);
+    font-size: var(--size-label);
+    line-height: var(--lh-label);
+    color: var(--text-label);
+    font-weight: var(--weight-bold);
+}
+
+/* Input field */
+.input-field {
+    font-family: var(--font-primary);
+    font-size: var(--size-placeholder);
+    line-height: var(--lh-placeholder);
+    color: var(--text-heading);
+    background-color: transparent;
+    border: none;
+    border-bottom: var(--border-input-width) solid var(--border-input);
+    outline: none;
+    width: 100%;
+    padding-bottom: var(--space-sm);
+}
+
+.input-field::placeholder {
+    color: var(--text-placeholder);
+}
+
+/* ─────────────────────────────────────────
+   10. BUTTONS
+   ───────────────────────────────────────── */
+
+/* Primary button — "Submit" */
+.btn-primary {
+    background-color: var(--bg-button-primary);
+    color: var(--text-on-button);
+    font-family: var(--font-primary);
+    font-size: var(--size-button);
+    line-height: var(--lh-button);
+    font-weight: var(--weight-bold);
+    border: none;
+    border-radius: var(--radius-button);
+    padding: var(--space-lg) var(--space-3xl);
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Small button — "Sign up" */
+.btn-small {
+    background-color: var(--bg-button-primary);
+    color: var(--text-on-button);
+    font-family: var(--font-primary);
+    font-size: var(--size-button-sm);
+    line-height: var(--lh-button);
+    font-weight: var(--weight-bold);
+    border: none;
+    border-radius: var(--radius-button);
+    padding: var(--space-sm) var(--space-lg);
+    cursor: pointer;
+}
+
+/* ─────────────────────────────────────────
+   11. BODY TEXT
+   "Don't have an account?" etc.
+   ───────────────────────────────────────── */
+.text-body {
+    font-family: var(--font-primary);
+    font-size: var(--size-h2);
+    line-height: var(--lh-h2);
+    color: var(--text-body);
 }

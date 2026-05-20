@@ -27,36 +27,45 @@ function Login() {
   return (
     <form onSubmit={handleSubmit}>
       <h1>Trainalyse</h1>
-      <h3>Welcome back!</h3>
+      <h2>Welcome back!</h2>
 
-      <p>Username</p>
-      <input
-        type="text"
-        placeholder="Enter your username"
-        value={userName}
-        onChange={handleUsername}
-      />
+      <div className="card">
+        <label className="input-label">USERNAME</label>
+        <input
+          className="input-field"
+          type="text"
+          placeholder="Enter your Username"
+          value={userName}
+          onChange={handleUsername}
+        />
 
-      <p>Email</p>
-      <input
-        type="email"
-        placeholder="Enter your email"
-        value={email}
-        onChange={handleEmail}
-      />
+        <label className="input-label">EMAIL</label>
+        <input
+          className="input-field"
+          type="email"
+          placeholder="Enter your Email"
+          value={email}
+          onChange={handleEmail}
+        />
 
-      <p>Password</p>
-      <input
-        type="password"
-        placeholder="Enter your Password"
-        value={password}
-        onChange={handlePassword}
-      />
+        <label className="input-label">PASSWORD</label>
+        <input
+          className="input-field"
+          type="password"
+          placeholder="Enter your Password"
+          value={password}
+          onChange={handlePassword}
+        />
 
-      <button onClick={handleSubmit}>Submit</button>
+        <button className="btn-primary" onClick={handleSubmit}>
+          Submit
+        </button>
+      </div>
 
-      <p>Dont have an account?</p>
-      <button onClick={handleSignUp}>Sign up</button>
+      <h2>Dont have an account?</h2>
+      <button className="btn-small" onClick={handleSignUp}>
+        Sign up
+      </button>
     </form>
   );
 }
