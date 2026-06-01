@@ -1,4 +1,5 @@
 import React from "react";
+import "./Login.css";
 
 import { useNavigate } from "react-router-dom";
 
@@ -25,47 +26,62 @@ function Login() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Trainalyse</h1>
-      <h2>Welcome back!</h2>
+    <form onSubmit={handleSubmit} className="login-page">
+      <h1 className="login-header">Trainalyse</h1>
+      <h2 className="login-subtitle">Welcome back!</h2>
 
-      <div className="card">
-        <label className="input-label">USERNAME</label>
-        <input
-          className="input-field"
-          type="text"
-          placeholder="Enter your Username"
-          value={userName}
-          onChange={handleUsername}
-        />
-
-        <label className="input-label">EMAIL</label>
-        <input
-          className="input-field"
-          type="email"
-          placeholder="Enter your Email"
-          value={email}
-          onChange={handleEmail}
-        />
-
-        <label className="input-label">PASSWORD</label>
-        <input
-          className="input-field"
-          type="password"
-          placeholder="Enter your Password"
-          value={password}
-          onChange={handlePassword}
-        />
-
-        <button className="btn-primary" onClick={handleSubmit}>
-          Submit
+      <div className="card login-card">
+        <div className="login-inputs">
+          <label className="input-label" htmlFor="username">
+            USERNAME
+          </label>
+          <input
+            id="username"
+            className="input-field"
+            type="text"
+            placeholder="Enter your Username"
+            value={userName}
+            onChange={handleUsername}
+          />
+        </div>
+        <div className="login-inputs">
+          <label className="input-label" htmlFor="email">
+            EMAIL
+          </label>
+          <input
+            id="email"
+            className="input-field"
+            type="email"
+            placeholder="Enter your Email"
+            value={email}
+            onChange={handleEmail}
+          />
+        </div>
+        <div className="login-inputs">
+          <label className="input-label" htmlFor="password">
+            PASSWORD
+          </label>
+          <input
+            id="password"
+            className="input-field"
+            type="password"
+            placeholder="Enter your Password"
+            value={password}
+            onChange={handlePassword}
+          />
+        </div>
+        <div className="login-inputs">
+          <button className="btn-primary" onClick={handleSubmit}>
+            Submit
+          </button>
+        </div>
+      </div>
+      <div className="login-footer ">
+        <h2>Dont have an account?</h2>
+        <button className="btn-small" onClick={handleSignUp}>
+          Sign up
         </button>
       </div>
-
-      <h2>Dont have an account?</h2>
-      <button className="btn-small" onClick={handleSignUp}>
-        Sign up
-      </button>
     </form>
   );
 }
