@@ -7,7 +7,16 @@ function Sets({ num, exerciseType, initialData }) {
   const [dropSets, setDropSets] = useState(
     initialData?.dropsets?.length
       ? initialData.dropsets
-      : [{ id: id + "-0", weight: "", reps: "", minutes: "", seconds: "" }], // pre-fill dropsets if data was passed, otherwise start with one default
+      : [
+          {
+            id: id + "-0",
+            weight: "",
+            reps: "",
+
+            minutes: "",
+            seconds: "",
+          },
+        ], // pre-fill dropsets if data was passed, otherwise start with one default
   );
 
   // function to handle adding a new drop set

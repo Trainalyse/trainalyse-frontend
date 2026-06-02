@@ -6,6 +6,7 @@ function Dropsets({ exerciseType, initialData }) {
   const [reps, setReps] = useState(initialData?.reps ?? ""); // pre-fill reps if data was passed
   const [minutes, setMinutes] = useState(initialData?.minutes ?? ""); // pre-fill minutes if data was passed
   const [seconds, setSeconds] = useState(initialData?.seconds ?? ""); // pre-fill seconds if data was passed
+  const [hours, setHours] = useState("");
 
   const id = React.useId(); // for id purposes only
 
@@ -37,9 +38,20 @@ function Dropsets({ exerciseType, initialData }) {
       {exerciseType === "duration" && (
         <>
           <input
-            type="range"
+            type="number"
             min="0"
-            max="100"
+            max="24"
+            id={id + "-hours"}
+            value={hours}
+            onChange={(e) => {
+              setHours(e.target.value);
+            }}
+          />
+          <label>{hours} : Hours</label>
+          <input
+            type="number"
+            min="0"
+            max="59"
             id={id + "-minutes"}
             value={minutes}
             onChange={(e) => {
@@ -49,7 +61,7 @@ function Dropsets({ exerciseType, initialData }) {
           <label>{minutes} : Minutes</label>
           <br />
           <input
-            type="range"
+            type="number"
             min="0"
             max="59"
             id={id + "-seconds"}
