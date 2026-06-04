@@ -20,7 +20,6 @@ function Day() {
       {
         id: id + "-0",
         exerciseName: "",
-        exerciseType: "weightsAndReps",
         sets: [],
       },
     ], // pre-fill exercises if data was passed, otherwise start with one default
@@ -33,7 +32,6 @@ function Day() {
       {
         id: id + "-" + exerciseArray.length,
         exerciseName: "",
-        exerciseType: "weightsAndReps",
         sets: [],
       },
     ]);

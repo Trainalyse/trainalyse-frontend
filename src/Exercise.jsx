@@ -4,9 +4,7 @@ import Sets from "./Sets";
 
 function Exercise({ number, initialData }) {
   const id = React.useId();
-  const [exerciseType, setExerciseType] = useState(
-    initialData?.exerciseType ?? "weightsAndReps",
-  ); // pre-fill type if data was passed
+
   const [exerciseName, setExerciseName] = useState(
     initialData?.exerciseName ?? "",
   ); // pre-fill name if data was passed
@@ -39,32 +37,11 @@ function Exercise({ number, initialData }) {
         value={exerciseName}
         onChange={(e) => setExerciseName(e.target.value)}
       />
-      <br />
-      {/*this is the section where the user selects the type of exercise */}
-      <select
-        value={exerciseType}
-        id={id}
-        onChange={(e) => {
-          setExerciseType(e.target.value);
-        }}
-      >
-        <option value="" disabled>
-          Select a Type
-        </option>
-        <option value="weightsAndReps">Weights and Reps</option>
-        <option value="duration">Duration</option>
-        <option value="bodyWeight">Bodyweight</option>
-        <option value="assisted">Assisted-Exercise</option>
-      </select>
+
       <br />
       {/* all sets come from the array now, each gets its data passed as initialData */}
       {sets.map((set, index) => (
-        <Sets
-          key={set.id}
-          num={index + 1}
-          exerciseType={exerciseType}
-          initialData={set}
-        />
+        <Sets key={set.id} num={index + 1} initialData={set} />
       ))}
       <br />
       {/* this is the button to add a new set */}
