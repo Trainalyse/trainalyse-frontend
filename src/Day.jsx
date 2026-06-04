@@ -19,7 +19,6 @@ function Day() {
     passedDay?.exercises ?? [
       {
         id: id + "-0",
-        exerciseName: "",
         sets: [],
       },
     ], // pre-fill exercises if data was passed, otherwise start with one default
@@ -31,7 +30,6 @@ function Day() {
       ...exerciseArray,
       {
         id: id + "-" + exerciseArray.length,
-        exerciseName: "",
         sets: [],
       },
     ]);
