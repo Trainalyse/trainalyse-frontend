@@ -1,18 +1,24 @@
 import React from "react";
 import { useState } from "react";
 import Sets from "./Sets";
-
 import exercises from "./data/exercises.json";
 import ExerciseAddition from "./ExerciseAddition";
 
 function Exercise({ number }) {
   const id = React.useId();
-
+  const [selectedExercise, setSelectedExercise] = React.useState("");
+  const [exerciseMode, setExerciseMode] = React.useState("searching");
+  // "searching" — show Add Exercise button + search UI
+  // "selected" — show exercise name + edit button
   const [showSearch, setShowSearch] = React.useState(false);
 
   const handleExerciseAddition = () => {
     setShowSearch(true);
   };
+
+  function handleEditExercise() {
+    setExerciseMode("searching");
+  }
 
   const [sets, setSets] = useState(
     [{ id: id + "-0", dropsets: [] }], // pre-fill sets if data was passed, otherwise start with one default
@@ -35,9 +41,25 @@ function Exercise({ number }) {
     <>
       <h3>Exercise {number}</h3>
       {/* this is the input field for entering the name of the exercise */}
+      {exerciseMode === "searching" && (
+        <>
+          <button onClick={handleExerciseAddition}>Add Exercise</button>
+          {showSearch && (
+            <ExerciseAddition
+              selectedExercise={selectedExercise}
+              setSelectedExercise={setSelectedExercise}
+              setExerciseMode={setExerciseMode}
+            />
+          )}
+        </>
+      )}
 
-      <button onClick={handleExerciseAddition}>Add Exercise</button>
-      {showSearch && <ExerciseAddition />}
+      {exerciseMode === "selected" && (
+        <>
+          <p>{selectedExercise}</p>
+          <button onClick={handleEditExercise}>Edit exercise</button>
+        </>
+      )}
 
       <br />
       {/* all sets come from the array now, each gets its data passed as initialData */}
