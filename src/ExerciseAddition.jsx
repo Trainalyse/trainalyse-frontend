@@ -5,6 +5,7 @@ function ExerciseAddition({
   selectedExercise,
   setSelectedExercise,
   setExerciseMode,
+  setExerciseType,
 }) {
   const [searchedExercise, setSearchedExercise] = React.useState("");
 
@@ -32,6 +33,7 @@ function ExerciseAddition({
           key={exercise.id}
           onClick={() => {
             setSelectedExercise(exercise.name);
+            setExerciseType(exercise.type);
             setExerciseSelected(true);
           }}
         >

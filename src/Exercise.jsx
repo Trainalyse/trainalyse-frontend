@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import Sets from "./Sets";
-import exercises from "./data/exercises.json";
 import ExerciseAddition from "./ExerciseAddition";
 
 function Exercise({ number }) {
@@ -11,6 +10,7 @@ function Exercise({ number }) {
   // "searching" — show Add Exercise button + search UI
   // "selected" — show exercise name + edit button
   const [showSearch, setShowSearch] = React.useState(false);
+  const [exerciseType, setExerciseType] = React.useState("");
 
   const handleExerciseAddition = () => {
     setShowSearch(true);
@@ -49,6 +49,7 @@ function Exercise({ number }) {
               selectedExercise={selectedExercise}
               setSelectedExercise={setSelectedExercise}
               setExerciseMode={setExerciseMode}
+              setExerciseType={setExerciseType}
             />
           )}
         </>
@@ -64,7 +65,7 @@ function Exercise({ number }) {
       <br />
       {/* all sets come from the array now, each gets its data passed as initialData */}
       {sets.map((set, index) => (
-        <Sets key={set.id} num={index + 1} />
+        <Sets key={set.id} num={index + 1} exerciseType={exerciseType} />
       ))}
       <br />
       {/* this is the button to add a new set */}
