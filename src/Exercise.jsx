@@ -2,13 +2,20 @@ import React from "react";
 import { useState } from "react";
 import Sets from "./Sets";
 
-function Exercise({ number, initialData }) {
+import exercises from "./data/exercises.json";
+import ExerciseAddition from "./ExerciseAddition";
+
+function Exercise({ number }) {
   const id = React.useId();
 
+  const [showSearch, setShowSearch] = React.useState(false);
+
+  const handleExerciseAddition = () => {
+    setShowSearch(true);
+  };
+
   const [sets, setSets] = useState(
-    initialData?.sets?.length
-      ? initialData.sets
-      : [{ id: id + "-0", dropsets: [] }], // pre-fill sets if data was passed, otherwise start with one default
+    [{ id: id + "-0", dropsets: [] }], // pre-fill sets if data was passed, otherwise start with one default
   );
 
   // function to add a set to the array of sets
@@ -29,10 +36,13 @@ function Exercise({ number, initialData }) {
       <h3>Exercise {number}</h3>
       {/* this is the input field for entering the name of the exercise */}
 
+      <button onClick={handleExerciseAddition}>Add Exercise</button>
+      {showSearch && <ExerciseAddition />}
+
       <br />
       {/* all sets come from the array now, each gets its data passed as initialData */}
       {sets.map((set, index) => (
-        <Sets key={set.id} num={index + 1} initialData={set} />
+        <Sets key={set.id} num={index + 1} />
       ))}
       <br />
       {/* this is the button to add a new set */}

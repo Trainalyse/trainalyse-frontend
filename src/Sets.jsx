@@ -2,21 +2,19 @@ import React from "react";
 import Dropsets from "./Dropsets";
 import { useState } from "react";
 
-function Sets({ num, initialData }) {
+function Sets({ num }) {
   const id = React.useId();
   const [dropSets, setDropSets] = useState(
-    initialData?.dropsets?.length
-      ? initialData.dropsets
-      : [
-          {
-            id: id + "-0",
-            weight: "",
-            reps: "",
+    [
+      {
+        id: id + "-0",
+        weight: "",
+        reps: "",
 
-            minutes: "",
-            seconds: "",
-          },
-        ], // pre-fill dropsets if data was passed, otherwise start with one default
+        minutes: "",
+        seconds: "",
+      },
+    ], // pre-fill dropsets if data was passed, otherwise start with one default
   );
 
   // function to handle adding a new drop set
@@ -48,7 +46,7 @@ function Sets({ num, initialData }) {
       <br />
       {/* all dropsets come from the array now, each gets its data passed as initialData */}
       {dropSets.map((dropset) => (
-        <Dropsets key={dropset.id} initialData={dropset} />
+        <Dropsets key={dropset.id} />
       ))}
       <br />
       {/* this is the button to add a new drop set */}

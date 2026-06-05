@@ -1,5 +1,4 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 import Exercise from "./Exercise";
 
 function Day() {
@@ -7,16 +6,16 @@ function Day() {
     /*now we come here and catch the note passed by navigate and catch that note by using useLocation and store
     it in a variable called location*/
   }
-  const location = useLocation();
-  const passedDay = location.state?.day; // the day data passed from App.jsx (or undefined if none)
+
   const id = React.useId();
 
-  const [date, setDate] = React.useState(passedDay?.date ?? ""); // pre-fill date if data was passed
+  const [date, setDate] = React.useState(""); // pre-fill date if data was passed
   const [edit, setEdit] = React.useState(false); //state for editing date
-  const [day, setDay] = React.useState(passedDay?.title ?? ""); // pre-fill title if data was passed
+  const [day, setDay] = React.useState(""); // pre-fill title if data was passed
   //this below code also makes sure that while mounting there is one exercise component rendered already
+
   const [exerciseArray, setExerciseArray] = React.useState(
-    passedDay?.exercises ?? [
+    [
       {
         id: id + "-0",
         sets: [],
@@ -80,7 +79,7 @@ function Day() {
       <br />
       {/* all exercises come from the array now, each gets its data passed as initialData */}
       {exerciseArray.map((exercise, index) => (
-        <Exercise key={exercise.id} number={index + 1} initialData={exercise} />
+        <Exercise key={exercise.id} number={index + 1} />
       ))}
       <br />
       {/* this is the button to add a new exercise */}

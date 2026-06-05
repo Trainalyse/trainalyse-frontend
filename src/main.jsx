@@ -7,6 +7,7 @@ import Day from "./Day.jsx";
 import Login from "./Login.jsx";
 import Signup from "./Signup.jsx";
 import Moreinfo from "./Moreinfo.jsx";
+import ExerciseAddition from "./ExerciseAddition.jsx";
 import "./design-system.css";
 
 createRoot(document.getElementById("root")).render(
@@ -18,6 +19,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Moreinfo" element={<Moreinfo />} />
+        <Route path="/ExerciseAddition" element={<ExerciseAddition />} />
         <Route path="*" element={<App />} />
       </Routes>
     </BrowserRouter>
