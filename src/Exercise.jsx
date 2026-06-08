@@ -28,7 +28,9 @@ function Exercise({ number, exerciseData }) {
   }
 
   const [sets, setSets] = useState(
-    exerciseData?.sets || [{ id: id + "-0", dropsets: [] }], // pre-fill sets if data was passed, otherwise start with one default
+    exerciseData?.sets?.length > 0
+      ? exerciseData.sets
+      : [{ id: id + "-0", dropsets: [] }],
   );
 
   // function to add a set to the array of sets

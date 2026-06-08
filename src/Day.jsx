@@ -10,7 +10,7 @@ function Day() {
 
   const id = React.useId();
   const location = useLocation();
-  const passedDay = location?.state.passedDay;
+  const passedDay = location.state?.passedDay;
 
   const [date, setDate] = React.useState(passedDay?.date || ""); // pre-fill date if data was passed
   const [edit, setEdit] = React.useState(false); //state for editing date
