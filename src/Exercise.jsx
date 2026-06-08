@@ -52,7 +52,7 @@ function Exercise({ number, exerciseData }) {
       {/* this is the input field for entering the name of the exercise */}
       {exerciseMode === "searching" && (
         <>
-          <button onClick={handleExerciseAddition}>Add Exercise</button>
+          <button onClick={handleExerciseAddition}>Search Exercise</button>
           {showSearch && (
             <ExerciseAddition
               selectedExercise={selectedExercise}
@@ -73,19 +73,24 @@ function Exercise({ number, exerciseData }) {
 
       <br />
       {/* all sets come from the array now, each gets its data passed as initialData */}
-      {sets.map((set, index) => (
-        <Sets
-          key={set.id}
-          num={index + 1}
-          exerciseType={exerciseType}
-          setsData={set}
-        />
-      ))}
-      <br />
-      {/* this is the button to add a new set */}
-      <button onClick={handleAddSets}>+ for Sets</button>
-      {/* this is the button to remove a set, only shown if there are sets */}
-      {sets.length > 1 && <button onClick={handleMinus}>- for Sets</button>}
+      {selectedExercise && (
+        <>
+          {sets.map((set, index) => (
+            <Sets
+              key={set.id}
+              num={index + 1}
+              exerciseType={exerciseType}
+              setsData={set}
+            />
+          ))}
+          <br />
+          {/* this is the button to add a new set */}
+
+          <button onClick={handleAddSets}>+ for Sets</button>
+          {/* this is the button to remove a set, only shown if there are sets */}
+          {sets.length > 1 && <button onClick={handleMinus}>- for Sets</button>}
+        </>
+      )}
     </>
   );
 }

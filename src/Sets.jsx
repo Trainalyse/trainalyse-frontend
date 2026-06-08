@@ -5,7 +5,7 @@ import { useState } from "react";
 function Sets({ num, exerciseType, setsData }) {
   const id = React.useId();
   const [dropSets, setDropSets] = useState(
-    setsData?.sets?.length > 0 ? setsData.dropsets : [{ id: id + "-0" }], // pre-fill dropsets if data was passed, otherwise start with one default
+    setsData?.dropsets?.length > 0 ? setsData.dropsets : [{ id: id + "-0" }], // pre-fill dropsets if data was passed, otherwise start with one default
   );
 
   // function to handle adding a new drop set
