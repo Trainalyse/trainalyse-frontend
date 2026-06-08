@@ -2,15 +2,22 @@ import React from "react";
 import { useState } from "react";
 import Sets from "./Sets";
 import ExerciseAddition from "./ExerciseAddition";
+import exercises from "./data/exercises.json";
 
-function Exercise({ number }) {
+function Exercise({ number, exerciseData }) {
   const id = React.useId();
-  const [selectedExercise, setSelectedExercise] = React.useState("");
-  const [exerciseMode, setExerciseMode] = React.useState("searching");
+  const [selectedExercise, setSelectedExercise] = React.useState(
+    exerciseData?.exerciseName || "",
+  );
+  const [exerciseMode, setExerciseMode] = React.useState(
+    exerciseData?.exerciseName ? "selected" : "searching",
+  );
   // "searching" — show Add Exercise button + search UI
   // "selected" — show exercise name + edit button
   const [showSearch, setShowSearch] = React.useState(false);
-  const [exerciseType, setExerciseType] = React.useState("");
+  const lookUpType =
+    exercises.find((e) => e.name === exerciseData?.exerciseName)?.type || "";
+  const [exerciseType, setExerciseType] = React.useState(lookUpType);
 
   const handleExerciseAddition = () => {
     setShowSearch(true);
@@ -21,7 +28,7 @@ function Exercise({ number }) {
   }
 
   const [sets, setSets] = useState(
-    [{ id: id + "-0", dropsets: [] }], // pre-fill sets if data was passed, otherwise start with one default
+    exerciseData?.sets || [{ id: id + "-0", dropsets: [] }], // pre-fill sets if data was passed, otherwise start with one default
   );
 
   // function to add a set to the array of sets
@@ -65,7 +72,12 @@ function Exercise({ number }) {
       <br />
       {/* all sets come from the array now, each gets its data passed as initialData */}
       {sets.map((set, index) => (
-        <Sets key={set.id} num={index + 1} exerciseType={exerciseType} />
+        <Sets
+          key={set.id}
+          num={index + 1}
+          exerciseType={exerciseType}
+          setsData={set}
+        />
       ))}
       <br />
       {/* this is the button to add a new set */}

@@ -1,5 +1,6 @@
 import React from "react";
 import Exercise from "./Exercise";
+import { useLocation } from "react-router-dom";
 
 function Day() {
   {
@@ -8,14 +9,16 @@ function Day() {
   }
 
   const id = React.useId();
+  const location = useLocation();
+  const passedDay = location?.state.passedDay;
 
-  const [date, setDate] = React.useState(""); // pre-fill date if data was passed
+  const [date, setDate] = React.useState(passedDay?.date || ""); // pre-fill date if data was passed
   const [edit, setEdit] = React.useState(false); //state for editing date
-  const [day, setDay] = React.useState(""); // pre-fill title if data was passed
+  const [day, setDay] = React.useState(passedDay?.title || ""); // pre-fill title if data was passed
   //this below code also makes sure that while mounting there is one exercise component rendered already
 
   const [exerciseArray, setExerciseArray] = React.useState(
-    [
+    passedDay?.exercises || [
       {
         id: id + "-0",
         sets: [],
@@ -79,7 +82,11 @@ function Day() {
       <br />
       {/* all exercises come from the array now, each gets its data passed as initialData */}
       {exerciseArray.map((exercise, index) => (
-        <Exercise key={exercise.id} number={index + 1} />
+        <Exercise
+          key={exercise.id}
+          number={index + 1}
+          exerciseData={exercise}
+        />
       ))}
       <br />
       {/* this is the button to add a new exercise */}

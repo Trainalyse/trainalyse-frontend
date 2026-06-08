@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { useNavigate } from "react-router-dom";
-
+import days from "./data/days.json";
 import Displayedday from "./Displayedday.jsx";
 
 function App() {
@@ -17,6 +17,14 @@ function App() {
       <button>settings</button>
 
       <hr></hr>
+      {days.map((day) => (
+        <button
+          key={day.id}
+          onClick={() => navigate("/Day", { state: { passedDay: day } })}
+        >
+          <Displayedday date={day.date} title={day.title} />
+        </button>
+      ))}
 
       <button onClick={handleClick} className="main">
         +
@@ -25,7 +33,7 @@ function App() {
       <hr />
 
       <nav>
-        <ul class="nav-links">
+        <ul className="nav-links">
           <li>
             <a href="#">Home</a>
           </li>
