@@ -1,10 +1,13 @@
-import React from "react";
-
 function Displayedday({ date, title }) {
+  const formattedDate = new Date(date).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
   return (
     <ul className="displayedday">
       <div>
-        {date} - {title}
+        {formattedDate} - {title}
       </div>
     </ul>
   );
