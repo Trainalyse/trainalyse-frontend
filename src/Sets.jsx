@@ -30,6 +30,7 @@ function Sets({ num, exerciseType, setsData }) {
   return (
     <>
       <p>Set {num}:</p>
+
       <br />
       {/* all dropsets come from the array now, each gets its data passed as initialData */}
       {dropSets.map((dropset) => (

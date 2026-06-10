@@ -80,6 +80,7 @@ function Day() {
         onChange={(e) => setDay(e.target.value)}
       />
       <br />
+
       {/* all exercises come from the array now, each gets its data passed as initialData */}
       {exerciseArray.map((exercise, index) => (
         <Exercise

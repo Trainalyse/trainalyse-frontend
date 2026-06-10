@@ -9,6 +9,10 @@ function App() {
   const handleClick = () => {
     navigate("/Day");
   };
+
+  const handleGraphs = () => {
+    navigate("/Graphs");
+  };
   //this is for catching reference for the dat input tag
   const dateRef = React.useRef();
   // this is for when we click on title in header then we see the search otherwise it is not visible
@@ -64,12 +68,14 @@ function App() {
         */}
       {filteredDays.length > 0 ? (
         filteredDays.map((day) => (
-          <button
-            key={day.id}
-            onClick={() => navigate("/Day", { state: { passedDay: day } })}
-          >
-            <Displayedday date={day.date} title={day.title} />
-          </button>
+          <div>
+            <button
+              key={day.id}
+              onClick={() => navigate("/Day", { state: { passedDay: day } })}
+            >
+              <Displayedday date={day.date} title={day.title} />
+            </button>
+          </div>
         ))
       ) : (
         <p>No workouts found</p>
@@ -85,7 +91,7 @@ function App() {
             <a href="#">Home</a>
           </li>
           <li>
-            <a href="#">graphs</a>
+            <button onClick={handleGraphs}>graphs</button>
           </li>
           <li>
             <a href="#">improve</a>
