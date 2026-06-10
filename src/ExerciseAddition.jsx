@@ -28,18 +28,19 @@ function ExerciseAddition({
           setSearchedExercise(e.target.value);
         }}
       />
-      {filteredExercises.map((exercise) => (
-        <button
-          key={exercise.id}
-          onClick={() => {
-            setSelectedExercise(exercise.name);
-            setExerciseType(exercise.type);
-            setExerciseSelected(true);
-          }}
-        >
-          {exercise.name}
-        </button>
-      ))}
+      {searchedExercise &&
+        filteredExercises.map((exercise) => (
+          <button
+            key={exercise.id}
+            onClick={() => {
+              setSelectedExercise(exercise.name);
+              setExerciseType(exercise.type);
+              setExerciseSelected(true);
+            }}
+          >
+            {exercise.name}
+          </button>
+        ))}
       <p>{`you have selected:${selectedExercise}`}</p>
 
       {exerciseSelected && (
