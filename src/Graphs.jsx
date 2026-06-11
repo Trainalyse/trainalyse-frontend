@@ -14,11 +14,18 @@ import exercises from "./data/exercises.json";
 
 function Graphs() {
   const [searchedExercise, setSearchedExercise] = React.useState("");
+  const [typeOfExercise, setTypeOfExercise] = React.useState("");
   const filteredExercises = exercises.filter((exercise) =>
     exercise.name.toLowerCase().includes(searchedExercise.toLowerCase()),
   );
   const [selectedExercise, setSelectedExercise] = React.useState("");
-  const data = getExerciseDataPoints(days, selectedExercise);
+  const [view, setView] = React.useState("all");
+  const data = getExerciseDataPoints(
+    days,
+    selectedExercise,
+    typeOfExercise,
+    view,
+  );
 
   return (
     <>
@@ -31,25 +38,95 @@ function Graphs() {
           setSearchedExercise(e.target.value);
         }}
       />
+      {selectedExercise && (
+        <div>
+          <button onClick={() => setView("all")}>All</button>
+          <button onClick={() => setView("week")}>Week</button>
+          <button onClick={() => setView("month")}>Month</button>
+        </div>
+      )}
       {searchedExercise &&
         filteredExercises.map((exercise) => (
           <button
             key={exercise.id}
             onClick={() => {
               setSelectedExercise(exercise.name);
+              setTypeOfExercise(exercise.type);
             }}
           >
             {exercise.name}
           </button>
         ))}
       <p>{`you have selected:${selectedExercise}`}</p>
-
-      <ResponsiveContainer height={300} width="100%">
-        <LineChart data={data}>
-          <XAxis dataKey="date" />
-          <Line dataKey="exerciseVolume" />
-        </LineChart>
-      </ResponsiveContainer>
+      {selectedExercise && (
+        <>
+          {typeOfExercise === "weightsAndReps" && (
+            <>
+              <ResponsiveContainer height={300} width="100%">
+                <LineChart data={data}>
+                  <XAxis dataKey="date" />
+                  <YAxis />
+                  <Line dataKey="exerciseVolume" />
+                </LineChart>
+              </ResponsiveContainer>
+              <ResponsiveContainer height={300} width="100%">
+                <LineChart data={data}>
+                  <XAxis dataKey="date" />
+                  <YAxis />
+                  <Line dataKey="maxWeight" />
+                </LineChart>
+              </ResponsiveContainer>
+            </>
+          )}
+          {typeOfExercise === "bodyweight" && (
+            <>
+              <ResponsiveContainer height={300} width="100%">
+                <LineChart data={data}>
+                  <XAxis dataKey="date" />
+                  <YAxis />
+                  <Line dataKey="exerciseVolume" />
+                </LineChart>
+              </ResponsiveContainer>
+              <ResponsiveContainer height={300} width="100%">
+                <LineChart data={data}>
+                  <XAxis dataKey="date" />
+                  <YAxis />
+                  <Line dataKey="totalReps" />
+                </LineChart>
+              </ResponsiveContainer>
+            </>
+          )}
+          {typeOfExercise === "assisted" && (
+            <>
+              <ResponsiveContainer height={300} width="100%">
+                <LineChart data={data}>
+                  <XAxis dataKey="date" />
+                  <YAxis />
+                  <Line dataKey="exerciseVolume" />
+                </LineChart>
+              </ResponsiveContainer>
+              <ResponsiveContainer height={300} width="100%">
+                <LineChart data={data}>
+                  <XAxis dataKey="date" />
+                  <YAxis />
+                  <Line dataKey="maxAssWeight" />
+                </LineChart>
+              </ResponsiveContainer>
+            </>
+          )}
+          {typeOfExercise === "duration" && (
+            <>
+              <ResponsiveContainer height={300} width="100%">
+                <LineChart data={data}>
+                  <XAxis dataKey="date" />
+                  <YAxis />
+                  <Line dataKey="totalSeconds" />
+                </LineChart>
+              </ResponsiveContainer>
+            </>
+          )}
+        </>
+      )}
     </>
   );
 }

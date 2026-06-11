@@ -482,5 +482,29 @@
         ]
       }
     ]
+  },
+  {
+    "id": 13,
+    "date": "2026-06-08",
+    "title": "Chest Day",
+    "exercises": [
+      {
+        "id": 1,
+        "exerciseName": "Bench Press",
+        "sets": [
+          {
+            "id": 1,
+            "dropsets": [
+              { "id": 1, "weight": 70, "reps": 8 },
+              { "id": 2, "weight": 55, "reps": 6 }
+            ]
+          },
+          {
+            "id": 2,
+            "dropsets": [{ "id": 1, "weight": 70, "reps": 6 }]
+          }
+        ]
+      }
+    ]
   }
 ]
