@@ -65,18 +65,31 @@ function App() {
       <hr></hr>
       {/*this is the logic that maps the filtered days and renders the days button
        according to the date and title entered and otherwise shows no workouts found text.
-        */}
+       .sort((a, b) => new Date(a.date) - new Date(b.date))
+       .map((point) => ({
+         ...point,
+         date: new Date(point.date).toLocaleDateString("en-US", {
+           year: "numeric",
+           month: "short",
+           day: "numeric",
+         }),
+       }));
+
+
+       */}
       {filteredDays.length > 0 ? (
-        filteredDays.map((day) => (
-          <div>
-            <button
-              key={day.id}
-              onClick={() => navigate("/Day", { state: { passedDay: day } })}
-            >
-              <Displayedday date={day.date} title={day.title} />
-            </button>
-          </div>
-        ))
+        filteredDays
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
+          .map((day) => (
+            <div>
+              <button
+                key={day.id}
+                onClick={() => navigate("/Day", { state: { passedDay: day } })}
+              >
+                <Displayedday date={day.date} title={day.title} />
+              </button>
+            </div>
+          ))
       ) : (
         <p>No workouts found</p>
       )}
