@@ -10,7 +10,6 @@ function Dropsets({ exerciseType, dropSetData }) {
   const [distance, setDistance] = useState(dropSetData?.distance || "");
 
   const id = React.useId(); // for id purposes only
-  const counter = React.useRef(1);
 
   return (
     <div>
