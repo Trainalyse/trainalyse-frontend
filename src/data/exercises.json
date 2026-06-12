@@ -23,5 +23,15 @@
   { "id": 22, "name": "Squat Jump", "type": "bodyweight" },
   { "id": 23, "name": "Assisted Pull Up", "type": "assisted" },
   { "id": 24, "name": "Assisted Dip", "type": "assisted" },
-  { "id": 25, "name": "Assisted Chin Up", "type": "assisted" }
+  { "id": 25, "name": "Assisted Chin Up", "type": "assisted" },
+  { "id": 26, "name": "Weighted Pull Up", "type": "weightedBodyweight" },
+  { "id": 27, "name": "Weighted Dip", "type": "weightedBodyweight" },
+  { "id": 28, "name": "Weighted Squat", "type": "weightedBodyweight" },
+  { "id": 29, "name": "Weighted Plank", "type": "weightAndDuration" },
+  { "id": 30, "name": "Weighted Dead Hang", "type": "weightAndDuration" },
+  { "id": 31, "name": "Running", "type": "distanceAndDuration" },
+  { "id": 32, "name": "Cycling", "type": "distanceAndDuration" },
+  { "id": 33, "name": "Rowing", "type": "distanceAndDuration" },
+  { "id": 34, "name": "Farmers Walk", "type": "weightAndDistance" },
+  { "id": 35, "name": "Weighted Running", "type": "weightAndDistance" }
 ]

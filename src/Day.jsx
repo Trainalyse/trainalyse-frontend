@@ -11,7 +11,7 @@ function Day() {
   const id = React.useId();
   const location = useLocation();
   const passedDay = location.state?.passedDay;
-
+  const counter = React.useRef(1);
   const [date, setDate] = React.useState(passedDay?.date || ""); // pre-fill date if data was passed
   const [edit, setEdit] = React.useState(false); //state for editing date
   const [day, setDay] = React.useState(passedDay?.title || ""); // pre-fill title if data was passed
@@ -31,7 +31,7 @@ function Day() {
     setExerciseArray([
       ...exerciseArray,
       {
-        id: id + "-" + exerciseArray.length,
+        id: id + "-" + counter.current++,
         sets: [],
       },
     ]);

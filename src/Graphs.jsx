@@ -160,6 +160,118 @@ function Graphs() {
               </ResponsiveContainer>
             </>
           )}
+          {typeOfExercise === "weightedBodyweight" && (
+            <>
+              <ResponsiveContainer height={300} width="100%">
+                <LineChart data={data}>
+                  <XAxis
+                    dataKey="date"
+                    angle={-45}
+                    textAnchor="end"
+                    height={60}
+                  />
+                  <YAxis />
+                  <Line dataKey="exerciseVolume" />
+                </LineChart>
+              </ResponsiveContainer>
+              <ResponsiveContainer height={300} width="100%">
+                <LineChart data={data}>
+                  <XAxis
+                    dataKey="date"
+                    angle={-45}
+                    textAnchor="end"
+                    height={150}
+                  />
+                  <YAxis />
+                  <Line dataKey="maxExtraWeight" />
+                </LineChart>
+              </ResponsiveContainer>
+            </>
+          )}
+          {typeOfExercise === "weightAndDuration" && (
+            <>
+              <ResponsiveContainer height={300} width="100%">
+                <LineChart data={data}>
+                  <XAxis
+                    dataKey="date"
+                    angle={-45}
+                    textAnchor="end"
+                    height={60}
+                  />
+                  <YAxis />
+                  <Line dataKey="totalSeconds" />
+                </LineChart>
+              </ResponsiveContainer>
+              <ResponsiveContainer height={300} width="100%">
+                <LineChart data={data}>
+                  <XAxis
+                    dataKey="date"
+                    angle={-45}
+                    textAnchor="end"
+                    height={60}
+                  />
+                  <YAxis />
+                  <Line dataKey="maxWeight" />
+                </LineChart>
+              </ResponsiveContainer>
+            </>
+          )}
+          {typeOfExercise === "distanceAndDuration" && (
+            <>
+              <ResponsiveContainer height={300} width="100%">
+                <LineChart data={data}>
+                  <XAxis
+                    dataKey="date"
+                    angle={-45}
+                    textAnchor="end"
+                    height={60}
+                  />
+                  <YAxis />
+                  <Line dataKey="totalSeconds" />
+                </LineChart>
+              </ResponsiveContainer>
+              <ResponsiveContainer height={300} width="100%">
+                <LineChart data={data}>
+                  <XAxis
+                    dataKey="date"
+                    angle={-45}
+                    textAnchor="end"
+                    height={60}
+                  />
+                  <YAxis />
+                  <Line dataKey="maxDistance" />
+                </LineChart>
+              </ResponsiveContainer>
+            </>
+          )}
+          {typeOfExercise === "weightAndDistance" && (
+            <>
+              <ResponsiveContainer height={300} width="100%">
+                <LineChart data={data}>
+                  <XAxis
+                    dataKey="date"
+                    angle={-45}
+                    textAnchor="end"
+                    height={60}
+                  />
+                  <YAxis />
+                  <Line dataKey="maxWeight" />
+                </LineChart>
+              </ResponsiveContainer>
+              <ResponsiveContainer height={300} width="100%">
+                <LineChart data={data}>
+                  <XAxis
+                    dataKey="date"
+                    angle={-45}
+                    textAnchor="end"
+                    height={60}
+                  />
+                  <YAxis />
+                  <Line dataKey="maxDistance" />
+                </LineChart>
+              </ResponsiveContainer>
+            </>
+          )}
         </>
       )}
     </>

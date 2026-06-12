@@ -23,7 +23,10 @@ export function getExerciseDataPoints(
       let maxWeight = 0;
       let totalReps = 0;
       let maxAssWeight = 0;
+      let maxExtraWeight = 0;
       let totalSeconds = 0;
+      let maxDistance = 0;
+
       for (const set of exercise.sets) {
         for (const dropset of set.dropsets) {
           if (typeOfExercise === "weightsAndReps") {
@@ -40,6 +43,26 @@ export function getExerciseDataPoints(
               (dropset.hours || 0) * 3600 +
               (dropset.minutes || 0) * 60 +
               (dropset.seconds || 0);
+          } else if (typeOfExercise === "weightedBodyweight") {
+            exerciseVolume += (user.weight + dropset.weight) * dropset.reps;
+            maxExtraWeight = Math.max(maxExtraWeight, dropset.weight);
+          } else if (typeOfExercise === "weightAndDuration") {
+            totalSeconds +=
+              dropset.weight *
+              ((dropset.hours || 0) * 3600 +
+                (dropset.minutes || 0) * 60 +
+                (dropset.seconds || 0));
+            maxWeight = Math.max(maxWeight, dropset.weight);
+          } else if (typeOfExercise === "distanceAndDuration") {
+            totalSeconds +=
+              dropset.distance *
+              ((dropset.hours || 0) * 3600 +
+                (dropset.minutes || 0) * 60 +
+                (dropset.seconds || 0));
+            maxDistance = Math.max(maxDistance, dropset.distance);
+          } else if (typeOfExercise === "weightAndDistance") {
+            totalSeconds += dropset.distance * dropset.weight;
+            maxDistance = Math.max(maxDistance, dropset.distance);
           }
         }
       }
@@ -50,6 +73,8 @@ export function getExerciseDataPoints(
         maxWeight,
         totalReps,
         maxAssWeight,
+        maxExtraWeight,
+        maxDistance,
         totalSeconds,
       });
     }
@@ -69,6 +94,14 @@ export function getExerciseDataPoints(
       grouped[weekKey].maxAssWeight = Math.max(
         grouped[weekKey].maxAssWeight,
         day.maxAssWeight,
+      );
+      grouped[weekKey].maxExtraWeight = Math.max(
+        grouped[weekKey].maxExtraWeight,
+        day.maxExtraWeight,
+      );
+      grouped[weekKey].maxDistance = Math.max(
+        grouped[weekKey].maxDistance,
+        day.maxDistance,
       );
       grouped[weekKey].totalSeconds += day.totalSeconds;
     }
@@ -90,6 +123,14 @@ export function getExerciseDataPoints(
         groupedMonth[monthKey].maxAssWeight,
         day.maxAssWeight,
       );
+      groupedMonth[monthKey].maxExtraWeight = Math.max(
+        groupedMonth[monthKey].maxExtraWeight,
+        day.maxExtraWeight,
+      );
+      groupedMonth[monthKey].maxDistance = Math.max(
+        groupedMonth[monthKey].maxDistance,
+        day.maxDistance,
+      );
       groupedMonth[monthKey].totalSeconds += day.totalSeconds;
     }
   }
@@ -100,6 +141,7 @@ export function getExerciseDataPoints(
   if (view === "all") {
     return results
       .sort((a, b) => new Date(a.date) - new Date(b.date))
+      .slice(-5)
       .map((point) => ({
         ...point,
         date: new Date(point.date).toLocaleDateString("en-US", {
@@ -111,6 +153,7 @@ export function getExerciseDataPoints(
   } else if (view === "week") {
     return weekData
       .sort((a, b) => new Date(a.date) - new Date(b.date))
+      .slice(-5)
       .map((point, index) => ({
         ...point,
         date: `Week ${index + 1}`,
@@ -118,6 +161,7 @@ export function getExerciseDataPoints(
   } else if (view === "month") {
     return monthData
       .sort((a, b) => new Date(a.date) - new Date(b.date))
+      .slice(-12)
       .map((point) => ({
         ...point,
         date: new Date(point.date).toLocaleDateString("en-US", {

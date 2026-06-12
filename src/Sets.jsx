@@ -4,6 +4,7 @@ import { useState } from "react";
 
 function Sets({ num, exerciseType, setsData }) {
   const id = React.useId();
+  const counter = React.useRef(1);
   const [dropSets, setDropSets] = useState(
     setsData?.dropsets?.length > 0 ? setsData.dropsets : [{ id: id + "-0" }], // pre-fill dropsets if data was passed, otherwise start with one default
   );
@@ -13,7 +14,7 @@ function Sets({ num, exerciseType, setsData }) {
     const updatedDropSets = [
       ...dropSets,
       {
-        id: id + "-" + dropSets.length,
+        id: id + "-" + counter.current++,
       },
     ];
     setDropSets(updatedDropSets);

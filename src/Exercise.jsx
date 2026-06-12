@@ -6,6 +6,7 @@ import exercises from "./data/exercises.json";
 
 function Exercise({ number, exerciseData }) {
   const id = React.useId();
+  const counter = React.useRef(1);
   const [selectedExercise, setSelectedExercise] = React.useState(
     exerciseData?.exerciseName || "",
   );
@@ -35,7 +36,7 @@ function Exercise({ number, exerciseData }) {
 
   // function to add a set to the array of sets
   function handleAddSets() {
-    setSets([...sets, { id: id + "-" + sets.length, dropsets: [] }]);
+    setSets([...sets, { id: id + "-" + counter.current++, dropsets: [] }]);
   }
 
   // function to remove a set from the array of sets
