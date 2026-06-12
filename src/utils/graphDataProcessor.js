@@ -73,7 +73,30 @@ export function getExerciseDataPoints(
       grouped[weekKey].totalSeconds += day.totalSeconds;
     }
   }
+
+  const groupedMonth = {};
+  for (const day of results) {
+    const monthKey = day.date.slice(0, 7);
+    if (!groupedMonth[monthKey]) {
+      groupedMonth[monthKey] = { ...day };
+    } else {
+      groupedMonth[monthKey].exerciseVolume += day.exerciseVolume;
+      groupedMonth[monthKey].maxWeight = Math.max(
+        groupedMonth[monthKey].maxWeight,
+        day.maxWeight,
+      );
+      groupedMonth[monthKey].totalReps += day.totalReps;
+      groupedMonth[monthKey].maxAssWeight = Math.max(
+        groupedMonth[monthKey].maxAssWeight,
+        day.maxAssWeight,
+      );
+      groupedMonth[monthKey].totalSeconds += day.totalSeconds;
+    }
+  }
+
   const weekData = Object.values(grouped);
+  const monthData = Object.values(groupedMonth);
+
   if (view === "all") {
     return results
       .sort((a, b) => new Date(a.date) - new Date(b.date))
@@ -88,12 +111,18 @@ export function getExerciseDataPoints(
   } else if (view === "week") {
     return weekData
       .sort((a, b) => new Date(a.date) - new Date(b.date))
+      .map((point, index) => ({
+        ...point,
+        date: `Week ${index + 1}`,
+      }));
+  } else if (view === "month") {
+    return monthData
+      .sort((a, b) => new Date(a.date) - new Date(b.date))
       .map((point) => ({
         ...point,
         date: new Date(point.date).toLocaleDateString("en-US", {
           year: "numeric",
           month: "short",
-          day: "numeric",
         }),
       }));
   }

@@ -64,14 +64,24 @@ function Graphs() {
             <>
               <ResponsiveContainer height={300} width="100%">
                 <LineChart data={data}>
-                  <XAxis dataKey="date" />
+                  <XAxis
+                    dataKey="date"
+                    angle={-45}
+                    textAnchor="end"
+                    height={150}
+                  />
                   <YAxis />
                   <Line dataKey="exerciseVolume" />
                 </LineChart>
               </ResponsiveContainer>
               <ResponsiveContainer height={300} width="100%">
                 <LineChart data={data}>
-                  <XAxis dataKey="date" />
+                  <XAxis
+                    dataKey="date"
+                    angle={-45}
+                    textAnchor="end"
+                    height={150}
+                  />
                   <YAxis />
                   <Line dataKey="maxWeight" />
                 </LineChart>
@@ -82,14 +92,24 @@ function Graphs() {
             <>
               <ResponsiveContainer height={300} width="100%">
                 <LineChart data={data}>
-                  <XAxis dataKey="date" />
+                  <XAxis
+                    dataKey="date"
+                    angle={-45}
+                    textAnchor="end"
+                    height={60}
+                  />
                   <YAxis />
                   <Line dataKey="exerciseVolume" />
                 </LineChart>
               </ResponsiveContainer>
               <ResponsiveContainer height={300} width="100%">
                 <LineChart data={data}>
-                  <XAxis dataKey="date" />
+                  <XAxis
+                    dataKey="date"
+                    angle={-45}
+                    textAnchor="end"
+                    height={60}
+                  />
                   <YAxis />
                   <Line dataKey="totalReps" />
                 </LineChart>
@@ -100,14 +120,24 @@ function Graphs() {
             <>
               <ResponsiveContainer height={300} width="100%">
                 <LineChart data={data}>
-                  <XAxis dataKey="date" />
+                  <XAxis
+                    dataKey="date"
+                    angle={-45}
+                    textAnchor="end"
+                    height={60}
+                  />
                   <YAxis />
                   <Line dataKey="exerciseVolume" />
                 </LineChart>
               </ResponsiveContainer>
               <ResponsiveContainer height={300} width="100%">
                 <LineChart data={data}>
-                  <XAxis dataKey="date" />
+                  <XAxis
+                    dataKey="date"
+                    angle={-45}
+                    textAnchor="end"
+                    height={60}
+                  />
                   <YAxis />
                   <Line dataKey="maxAssWeight" />
                 </LineChart>
@@ -118,7 +148,12 @@ function Graphs() {
             <>
               <ResponsiveContainer height={300} width="100%">
                 <LineChart data={data}>
-                  <XAxis dataKey="date" />
+                  <XAxis
+                    dataKey="date"
+                    angle={-45}
+                    textAnchor="end"
+                    height={60}
+                  />
                   <YAxis />
                   <Line dataKey="totalSeconds" />
                 </LineChart>
